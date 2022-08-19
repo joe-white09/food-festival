@@ -4,6 +4,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 // const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 // const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require('path');
+const { resolve } = require('path');
 
 const config = {
   entry: {
@@ -22,19 +23,16 @@ const config = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
               esModule: false,
-              name(file) {
-                return '[path][name].[ext]';
+              name (file) {
+                return "[path][name].[ext]"
               },
-              publicPath(url) {
-                return url.replace('../', '/assets/');
+              publicPath: function(url) {
+                return url.replace("../", "/assets/")
               }
-            }
-          },
-          {
-            loader: 'image-webpack-loader'
+            }  
           }
         ]
       }
